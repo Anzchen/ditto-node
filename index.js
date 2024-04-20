@@ -1,11 +1,12 @@
 import cors from "cors";
-import mongoose, { Connection } from "mongoose";
+import mongoose from "mongoose";
 import session from "express-session";
-import UserRoutes from "./Users/routes";
-import ReviewRoutes from "./Reviews/routes";
+import express from "express";
+import UserRoutes from "./Users/routes.js";
+import ReviewRoutes from "./Reviews/routes.js";
 import "dotenv/config";
 
-CONNECTION_STRING =
+const CONNECTION_STRING =
   "mongodb+srv://ditto:dittopassword@ditto.csed6in.mongodb.net/?retryWrites=true&w=majority&appName=ditto";
 //mongodb+srv://ditto:<dittopassword>@ditto.csed6in.mongodb.net/
 
