@@ -2,6 +2,7 @@ import cors from "cors";
 import mongoose, { Connection } from "mongoose";
 import session from "express-session";
 import UserRoutes from "./Users/routes";
+import ReviewRoutes from "./Reviews/routes";
 import "dotenv/config";
 
 CONNECTION_STRING =
@@ -30,5 +31,6 @@ app.use(cors({ credentials: true, origin: process.env.FRONTEND_URL }));
 
 app.use(express.json());
 UserRoutes(app);
+ReviewRoutes(app);
 
 app.listen(process.env.PORT || 4000);
