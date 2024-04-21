@@ -37,9 +37,11 @@ export default function UserRoutes(app) {
   };
 
   const updateUser = async (req, res) => {
-    const { userId } = req.params;
-    const status = await dao.updateUser(userId, req.body);
-    const currentUser = await dao.findUserById(userId);
+    const { username } = req.params;
+    console.log("userId: " + username);
+    console.log("request body: " + JSON.stringify(req.body));
+    const status = await dao.updateUser(username, req.body);
+    const currentUser = await dao.findUserByUsername(username);
     res.json(status);
   };
   const findAllUsers = async (req, res) => {
@@ -71,7 +73,7 @@ export default function UserRoutes(app) {
   app.get("/api/users/songs/:userId", getSongs);
   app.post("/api/users", createUser);
   app.get("/api/users/:userId", findUserById);
-  app.put("/api/users/:userId", updateUser);
+  app.put("/api/users/:username", updateUser);
   app.delete("/api/users/:userId", deleteUser);
   app.post("/api/users/signup", signup);
   app.post("/api/users/signin", signin);
