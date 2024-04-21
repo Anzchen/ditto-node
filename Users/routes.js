@@ -46,6 +46,12 @@ export default function UserRoutes(app) {
     const users = await dao.findAllUsers();
     res.json(users);
   };
+
+  const getSongs = async (req, res) => {
+    const user = await dao.findUserById(req.params.userId);
+    res.json(user.songs);
+  };
+
   const signup = async (req, res) => {
     const user = await dao.findUserByUsername(req.body.username);
     if (user) {
@@ -62,6 +68,7 @@ export default function UserRoutes(app) {
   };
 
   app.get("/api/users", findAllUsers);
+  app.get("/api/users/songs/:userId", getSongs);
   app.post("/api/users", createUser);
   app.get("/api/users/:userId", findUserById);
   app.put("/api/users/:userId", updateUser);
