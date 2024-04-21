@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema(
       enum: ["USER", "ADMIN"],
       default: "USER",
     },
+    songs: { type: Array, required: true },
   },
   { collection: "users" }
 );
