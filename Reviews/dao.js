@@ -4,7 +4,8 @@ export const createReview = (review) => {
   return model.create(review);
 };
 export const findAllReviews = () => model.find();
-export const findReviewBySongId = (songId) => model.findBySongId(songId);
+export const findReviewBySongId = (songId) =>
+  model.findOne({ song_id: songId });
 export const findReviewByReviewer = (username) =>
   model.findOne({ reviewer: username });
 export const updateReview = (reviewId, review) =>
