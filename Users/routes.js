@@ -69,6 +69,17 @@ export default function UserRoutes(app) {
     res.sendStatus(200);
   };
 
+  const findFollowers = async (req, res) => {
+    const users = await dao.findFollowers(req.body.username);
+    res.json(users);
+  };
+
+  const findFollowing = async (req, res) => {
+    const users = await dao.findFollowing(req.body.username);
+    res.json(users);
+  };
+  app.get("/api/users/following", findFollowing);
+  app.get("/api/users/followers", findFollowers);
   app.get("/api/users", findAllUsers);
   app.get("/api/users/songs/:userId", getSongs);
   app.post("/api/users", createUser);

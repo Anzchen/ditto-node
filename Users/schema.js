@@ -5,6 +5,7 @@ const userSchema = new mongoose.Schema(
     password: { type: String, required: true },
     phone_number: { type: String, required: true },
     following: { type: Array, required: true },
+    followers: { type: Array, required: true },
     role: {
       type: String,
       enum: ["USER", "ADMIN"],

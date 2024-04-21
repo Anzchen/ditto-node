@@ -12,3 +12,7 @@ export const findUserByCredentials = (username, password) =>
 export const updateUser = (username, user) =>
   model.updateOne({ username: username }, { $set: user });
 export const deleteUser = (userId) => model.deleteOne({ _id: userId });
+export const findFollowers = (username) =>
+  model.findOne({ username: username }, { followers: 1 });
+export const findFollowing = (username) =>
+  model.findOne({ username: username }, { following: 1 });
