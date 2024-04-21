@@ -5,6 +5,7 @@ const reviewsSchema = new mongoose.Schema(
     star_rating: { type: Number, required: true },
     timestamp: { type: Date, required: true, default: Date.now },
     reviewer: { type: String, required: true },
+    text: { type: String, required: true },
   },
   { collection: "reviews" }
 );
