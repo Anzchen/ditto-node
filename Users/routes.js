@@ -112,7 +112,7 @@ export default function UserRoutes(app) {
   app.get("/api/users/songs/:userId", getSongs);
   app.post("/api/users", createUser);
   app.get("/api/users/:userId", findUserById);
-  app.get("/api/users/:username", findUserByUsername);
+  app.get("/api/users/getuser/:username", findUserByUsername);
   app.put("/api/users/:username", updateUser);
   app.delete("/api/users/:userId", deleteUser);
   app.post("/api/users/signup", signup);
