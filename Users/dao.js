@@ -16,3 +16,32 @@ export const findFollowers = (username) =>
   model.findOne({ username: username }, { followers: 1 });
 export const findFollowing = (username) =>
   model.findOne({ username: username }, { following: 1 });
+
+export const followUser = (currentUsername, usernameToFollow) => {
+  // Add usernameToFollow to the current user's following array
+  const currentUserUpdate = model.findOneAndUpdate(
+    { username: currentUsername },
+    { $addToSet: { following: usernameToFollow } },
+    { new: true }
+  );
+
+  // Add currentUsername to the followed user's followers array
+  model.findOneAndUpdate(
+    { username: usernameToFollow },
+    { $addToSet: { followers: currentUsername } }
+  );
+
+  return currentUserUpdate;
+};
+export const unfollowUser = (currentUsername, usernameToUnfollow) => {
+  const currentUserUpdate = model.findOneAndUpdate(
+    { username: currentUsername },
+    { $pull: { following: usernameToUnfollow } },
+    { new: true }
+  );
+  model.findOneAndUpdate(
+    { username: usernameToUnfollow },
+    { $pull: { followers: currentUsername } }
+  );
+  return currentUserUpdate;
+};
