@@ -45,3 +45,13 @@ export const unfollowUser = async (currentUsername, usernameToUnfollow) => {
   );
   return currentUserUpdate;
 };
+
+export const addFavorite = async (currentUsername, songId) => {
+  const currentUserUpdate = await model.findOneAndUpdate(
+    { username: currentUsername },
+    { $addToSet: { songs: songId } },
+    { new: true }
+  );
+
+  return currentUserUpdate;
+};
