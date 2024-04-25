@@ -106,6 +106,17 @@ export default function UserRoutes(app) {
     res.json(updatedUser.following);
   };
 
+  const addFavorite = async (req, res) => {
+    const song = req.body.songId;
+    const user = req.session["currentUser"];
+    if (!user) {
+      res.sendStatus(401);
+      return;
+    }
+    const updatedUser = await dao.addFavorite(user.username, song);
+    res.json(updatedUser.songs);
+  };
+
   app.get("/api/users/following", findFollowing);
   app.get("/api/users/followers", findFollowers);
   app.get("/api/users", findAllUsers);
@@ -121,4 +132,6 @@ export default function UserRoutes(app) {
   app.post("/api/users/profile", profile);
   app.post("/api/users/followuser", followUser);
   app.post("/api/users/unfollowuser", unfollowUser);
+  app.post("/api/users/addfav", addFavorite);
+
 }
