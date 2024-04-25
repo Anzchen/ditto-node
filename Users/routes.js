@@ -114,6 +114,7 @@ export default function UserRoutes(app) {
       return;
     }
     const updatedUser = await dao.addFavorite(user.username, song);
+    req.session["currentUser"] = updatedUser;
     res.json(updatedUser.songs);
   };
 
@@ -133,5 +134,4 @@ export default function UserRoutes(app) {
   app.post("/api/users/followuser", followUser);
   app.post("/api/users/unfollowuser", unfollowUser);
   app.post("/api/users/addfav", addFavorite);
-
 }
