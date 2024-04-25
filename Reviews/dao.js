@@ -9,4 +9,5 @@ export const findReviewByReviewer = async (username) =>
   await model.find({ reviewer: username });
 export const updateReview = (reviewId, review) =>
   model.updateOne({ _id: reviewId }, { $set: review });
-export const deleteReview = (reviewId) => model.deleteOne({ _id: reviewId });
+export const deleteReview = (reviewId) =>
+  model.deleteOne({ review_id: reviewId });

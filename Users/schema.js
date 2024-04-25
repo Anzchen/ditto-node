@@ -3,7 +3,6 @@ const userSchema = new mongoose.Schema(
   {
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    phone_number: { type: String, required: true },
     following: { type: Array, required: true },
     followers: { type: Array, required: true },
     role: {
